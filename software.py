@@ -1,3 +1,11 @@
+""""
+
+Overarching finite state machine for the system. Sets up the server connection, creates PyGame text surfaces, and FSM transitions.  
+
+Authors: Aparajito Saha and Amulya Khurana
+
+""""
+
 import pyaudio
 import pygame
 import signal
@@ -53,6 +61,7 @@ screen.fill(BLACK)
 pygame.mouse.set_visible(False)
 
 #Text Displays
+
 text_surface_init=my_font.render('Wave and then say HI to begin',True,WHITE)
 rect_init=text_surface_init.get_rect(center=(160,120))
 
@@ -121,9 +130,7 @@ while(1):
     	pygame.display.flip()
     	dist = sensor()
     	p=subprocess.Popen('./record.sh',shell=True)
-    	#dist = sensor()
     	time.sleep(3)
-    	#os.kill(int(p.pid),signal.SIGKILL)
     	subprocess.Popen('sudo killall arecord',shell=True)
     	print("Detected Distance = " + str(dist))
     	try:
@@ -133,7 +140,6 @@ while(1):
     	    pass
     elif(current_state == NEW_USER):
     	#get microphone input
-    	#current_state = GET_DATA
     	screen.blit(text_surface_id1,rect_id1)
     	screen.blit(text_surface_id2,rect_id2)
     	pygame.display.flip()
@@ -141,6 +147,7 @@ while(1):
     	time.sleep(9)
     	subprocess.Popen('sudo killall arecord',shell=True)
     	id = get_audio_test().replace(" ","")
+	#communicate student id to the client
     	SocketServer.sendClientMessage('@'+id)
     	current_state = GET_DATA
     elif(current_state == GET_DATA):
@@ -153,7 +160,6 @@ while(1):
     	#if microphone  input == 'Yes': current_state = SWAB
     	#else:
     	#print 'Please say your student id again'
-    	#current_state = NEW_USER
     	text_surface_data=my_font.render(str(info[:-1]),True,WHITE)
     	rect_data=text_surface_data.get_rect(center=(160,100))
     	screen.blit(text_surface_confirm1,rect_confirm1)
@@ -174,11 +180,6 @@ while(1):
     elif(current_state == SWAB):
     	#pick up swab and present to user
     	#display instructions
-    	#time.sleep(10)
-    	#current_state = LABEL    	
-    	#grab_tube()
-    	#time.sleep(3)
-    	#release()
     	arm.move_arm()
     	GPIO.cleanup()
     	screen.blit(text_surface_swab1,rect_swab1)
@@ -191,6 +192,7 @@ while(1):
     	p = subprocess.Popen('./redo.sh',shell=True)
     	time.sleep(3)
     	subprocess.Popen('sudo killall arecord',shell=True)
+	#retry robot arm movement if user says 'Redo'
     	response = get_audio_redo()
     	if response == 'redo':
     	    current_state = SWAB
@@ -200,17 +202,11 @@ while(1):
     elif(current_state == LABEL):
     	#send print command to label maker
     	#ask user to switch to other nostril
-    	#time.sleep(10)
-    	#current_state = TUBE
     	screen.blit(text_surface_switch,rect_switch)
     	time.sleep(5)
     	current_state = TUBE
     elif(current_state == TUBE):
-    	#calculate angle to pick up tube
-    	#pick up and present tube
     	#display instructions
-    	#time.sleep(10)
-    	#current_state = DONE
     	screen.blit(text_surface_tube1,rect_tube1)
     	screen.blit(text_surface_tube2,rect_tube2)
     	screen.blit(text_surface_tube3,rect_tube3)
@@ -221,8 +217,6 @@ while(1):
     	current_state = DONE
     elif(current_state == DONE):
     	#display 'Thank You'
-    	#time.sleep(5)
-    	#current_state = INIT
     	screen.blit(text_surface_done,rect_done)
     	time.sleep(8)
     	current_state = INIT

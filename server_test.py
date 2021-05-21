@@ -1,3 +1,11 @@
+"""
+
+Test the server
+
+Authors: Aparajito Saha and Amulya Khurana
+
+""""
+
 import socket
 
 HOST = '192.168.0.201'  # Standard loopback interface address (localhost)

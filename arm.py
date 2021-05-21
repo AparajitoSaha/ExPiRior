@@ -1,7 +1,18 @@
+""""
+
+Code to move the robot arm using gpiozero and PWM. 
+
+Authors: Aparajito Saha and Amulya Khurana
+
+""""
+
 import RPi.GPIO as GPIO
 import time
 from gpiozero import Servo
 
+"""
+Move the robot arm to pick up and present a swab to the user
+"""
 def move_arm():
     claw = Servo(19,0)
     updown = 12
@@ -35,12 +46,10 @@ def move_arm():
 
     #GPIO.cleanup()
     #claw.stop()
-
-def calibrate_updown():
-    p.ChangeDutyCycle(7.5)
-
-def calibrate_rotate():
-    r.ChangeDutyCycle(2.5)
+    
+"""
+Calibrate the servos of the robot arm
+"""
 
 def calibrate():
     r.ChangeDutyCycle(7.5)
@@ -50,6 +59,9 @@ def calibrate():
     print("Calibrating - everything in mid position, claw closed")
     time.sleep(2)
 
+""""
+Move the robot arm to grab a test tube
+""""
 def grab_tube():
     claw.mid()
     r.ChangeDutyCycle(2.5)
@@ -60,6 +72,9 @@ def grab_tube():
     claw.max()
     time.sleep(2)
 
+"""
+Move the robot arm to grab a swab
+"""
 def grab_swab():
     r.ChangeDutyCycle(3.5)
     claw.max()
@@ -77,26 +92,12 @@ def grab_swab():
     #p.ChangeDutyCycle(27.5)
     time.sleep(2)
 
+"""
+Move the robot arm to move to the user and release the test tube or swab
+"""
 def release():
     print("Moving to user")
     r.ChangeDutyCycle(12.5)
     time.sleep(2)
     print("Closing claw")
     time.sleep(2)
-
-#calibrate()
-#time.sleep(5)
-#grab_tube()
-#claw.max()
-#claw.mid()
-#time.sleep(3)
-#claw.max()
-#release()
-#calibrate_updown()
-#time.sleep(2)
-#calibrate_rotate()
-#time.sleep(2)
-#p.stop()
-#r.stop()
-#GPIO.cleanup()
-#claw.stop()

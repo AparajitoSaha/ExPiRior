@@ -1,3 +1,11 @@
+""""
+
+Test the client
+
+Authors: Aparajito Saha and Amulya Khurana
+
+""""
+
 import socket
 
 HOST = '192.168.0.241'  # The server's hostname or IP address

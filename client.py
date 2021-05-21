@@ -1,3 +1,10 @@
+""" 
+Laptop-side client for database information access and label printing 
+via TCP/IP communication
+
+Authors: Aparajito Saha and Amulya Khurana
+"""
+
 from threading import Thread
 import socket, time
 from print_manipulation import *

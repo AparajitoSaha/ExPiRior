@@ -1,10 +1,8 @@
-""""
-
-Test the client
+"""
+Test client setup for TCP/IP communication
 
 Authors: Aparajito Saha and Amulya Khurana
-
-""""
+"""
 
 import socket
 

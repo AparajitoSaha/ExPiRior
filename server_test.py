@@ -1,10 +1,8 @@
 """
-
-Test the server
+Test a TCP/IP communication based server on the Raspberry Pi
 
 Authors: Aparajito Saha and Amulya Khurana
-
-""""
+"""
 
 import socket
 

@@ -1,10 +1,9 @@
 """"
-
-Code for keyboard manipulation to read user data and interact with the editor to print a label.
+Code for keyboard manipulation to read user data and interact with the Brother 
+editor to print a label.
 
 Authors: Aparajito Saha and Amulya Khurana
-
-""""
+"""
 
 import time
 import pyautogui

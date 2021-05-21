@@ -1,10 +1,9 @@
 """"
-
-Code to move the robot arm using gpiozero and PWM. 
+Code to move the MeArm robot arm using gpiozero and PWM on the
+Raspberry Pi. 
 
 Authors: Aparajito Saha and Amulya Khurana
-
-""""
+"""
 
 import RPi.GPIO as GPIO
 import time
@@ -61,7 +60,7 @@ def calibrate():
 
 """"
 Move the robot arm to grab a test tube
-""""
+"""
 def grab_tube():
     claw.mid()
     r.ChangeDutyCycle(2.5)

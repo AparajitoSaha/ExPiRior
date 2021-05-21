@@ -1,3 +1,9 @@
+"""
+Sets up a server on the Raspberry Pi for TCP/IP communication via sockets.
+
+Authors: Aparajito Saha and Amulya Khurana
+"""
+
 import socket
 import threading as Thread
 import time

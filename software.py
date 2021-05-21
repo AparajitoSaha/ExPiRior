@@ -1,10 +1,9 @@
 """"
-
-Overarching finite state machine for the system. Sets up the server connection, creates PyGame text surfaces, and FSM transitions.  
+Overarching finite state machine for the system. Sets up the server connection, 
+creates PyGame text surfaces, and FSM transitions for advancing the system.  
 
 Authors: Aparajito Saha and Amulya Khurana
-
-""""
+"""
 
 import pyaudio
 import pygame
